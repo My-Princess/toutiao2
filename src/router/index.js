@@ -4,7 +4,8 @@ import VueRouter from 'vue-router'
 import Login from '../views/login.vue'
 // 注册
 import Register from '../views/register.vue'
-
+// 个人中心
+import Personal from '../views/personal.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -22,6 +23,11 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register
+  },
+  {
+    path: '/personal',
+    name: 'Personal',
+    component: Personal
   }
 ]
 // mode: "history"
