@@ -10,13 +10,13 @@
       <div class="inputs">
         <myinput
         placeholder="请输入手机号"
-        label="手机号"
         class="input"
         v-model="users.username"
-         />
+        :rules='/^1\d{10}$/'
+        err_msg='请输入11位手机号~~'
+        />
         <myinput
         placeholder="密码"
-        label="密码"
         class="input"
         type="password"
         v-model="users.password" />
