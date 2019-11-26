@@ -41,6 +41,7 @@
 <script>
 import myinput from '../components/myinput'
 import mybutton from '../components/mybutton'
+import { register } from '../api/users'
 export default {
   data () {
     return {
@@ -55,8 +56,15 @@ export default {
     myinput, mybutton
   },
   methods: {
-    btn () {
-      console.log(this.userdata)
+    async btn () {
+    //   console.log(this.userdata)
+      let res = await register(this.userdata)
+      //   console.log(res)
+      if (res.status === 200) {
+        this.$toast(res.data.message)
+      } else {
+        this.$toast('注册失败')
+      }
     },
     namedata (value) {
       this.userdata.username = value
