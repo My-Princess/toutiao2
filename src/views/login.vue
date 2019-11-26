@@ -33,6 +33,7 @@
 <script>
 import myinput from '../components/myinput'
 import mybutton from '../components/mybutton'
+import { login } from '../api/users'
 export default {
   data () {
     return {
@@ -47,7 +48,22 @@ export default {
   },
   methods: {
     btn () {
-      console.log(this.users)
+      // console.log(this.users)
+      login(this.users)
+        .then(res => {
+          console.log(res)
+          if (res.status === 200) {
+            // 将服务器返回的token数据存储到本地
+            localStorage.setItem('toutiao2', res.data.data.token)
+            // 将id存储到本地
+            localStorage.setItem('toutiao2', res.data.data.user.id)
+            this.$router.push({ name: 'Personal' })
+          }
+        })
+        .catch(err => {
+          console.log(err)
+          this.$toast.fail('登录失败')
+        })
     }
   }
 }
