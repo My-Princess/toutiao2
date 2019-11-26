@@ -11,21 +11,29 @@
         <myinput
         placeholder="请输入手机号"
         class="input"
-        v-model="users.username"
         :rules='/^1\d{10}$/'
+        @input="namedata"
+        :value="userdata.username"
         err_msg='请输入11位手机号~~'
         />
         <myinput
-        placeholder="密码"
+         placeholder="呢称"
+         :rules="/^\w+$/"
+         err_msg="呢称格式输入有误！"
+         @input="nickdata"
+         :value="userdata.nickname"
+         />
+
+        <myinput
         class="input"
         type="password"
-        v-model="users.password" />
+         :rules="/^\w{6,16}$/"
+        v-model="userdata.password" />
       </div>
       <p class="tips">
-        没有账号？
-        <a href="javascript:;" @click="$router.push({path: '/register'})" class>去注册</a>
+        <a href="javascript:;" @click="$router.push({path: '/login'})" class>去登录</a>
       </p>
-      <mybutton class="button" text="登录" @click="btn"></mybutton>
+      <mybutton class="button" text="注册" @click="btn"></mybutton>
     </div>
   </div>
 </template>
@@ -36,8 +44,9 @@ import mybutton from '../components/mybutton'
 export default {
   data () {
     return {
-      users: {
+      userdata: {
         username: '',
+        nickname: '',
         password: ''
       }
     }
@@ -47,7 +56,13 @@ export default {
   },
   methods: {
     btn () {
-      console.log(this.users)
+      console.log(this.userdata)
+    },
+    namedata (value) {
+      this.userdata.username = value
+    },
+    nickdata (value) {
+      this.userdata.nickname = value
     }
   }
 }
