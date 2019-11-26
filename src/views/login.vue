@@ -8,20 +8,48 @@
         <span class="iconfont iconnew"></span>
       </div>
       <div class="inputs">
-        <input placeholder="请输入手机号" class="input" />
-        <input placeholder="密码" class="input" type="password" />
+        <myinput
+        placeholder="请输入手机号"
+        label="手机号"
+        class="input"
+        v-model="users.username"
+         />
+        <myinput
+        placeholder="密码"
+        label="密码"
+        class="input"
+        type="password"
+        v-model="users.password" />
       </div>
       <p class="tips">
         没有账号？
         <a href="#/register" class>去注册</a>
       </p>
-      <div  class="button">登录按钮</div>
+      <div  class="button" @click="btn">登录按钮</div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import myinput from '../components/myinput'
+export default {
+  data () {
+    return {
+      users: {
+        username: '',
+        password: ''
+      }
+    }
+  },
+  components: {
+    myinput
+  },
+  methods: {
+    btn () {
+      console.log(this.users)
+    }
+  }
+}
 </script>
 
 <style lang="less" scoped>
